@@ -1,6 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trang giới thiệu</title>
+<meta name="description" content="Giới thiệu bot Telegram và các dự án mã nguồn mở.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f7fa; --surface:#ffffff; --ink:#12263a; --muted:#52667a;
+  --line:#d9e2ea; --tg:#1f95d6; --tg-soft:#dff1fb; --amber:#e8a317;
+  --bubble-me:#d4efc2; --bubble-bot:#ffffff;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1a26; --surface:#15283a; --ink:#e8f0f7; --muted:#9db0c2;
+    --line:#26405a; --tg:#4cb4ee; --tg-soft:#16364d; --amber:#f2b134;
+    --bubble-me:#2c5a3d; --bubble-bot:#1c3550;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1a26; --surface:#15283a; --ink:#e8f0f7; --muted:#9db0c2;
+  --line:#26405a; --tg:#4cb4ee; --tg-soft:#16364d; --amber:#f2b134;
+  --bubble-me:#2c5a3d; --bubble-bot:#1c3550;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
 
-   <!DOCTYPE html>
-   <html>
-     <head><meta charset="utf-8"><title>Trang của tôi</title></head>
-     <body><h1>Xin chào GitHub Pages!</h1></body>
-   </html>
+/* Hero */
+header.hero{padding:56px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin:0 0 16px;font-weight:800;letter-spacing:-.02em}
+.lead{color:var(--muted);font-size:1.08rem;max-width:46ch;margin:0 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;
+  border:2px solid var(--ink)}
+.btn.primary{background:var(--tg);border-color:var(--tg);color:#fff}
+.btn:hover{transform:translateY(-1px)}
+
+/* Chat demo: the memorable element */
+.chat{background:var(--tg-soft);border:1px solid var(--line);border-radius:22px;padding:18px;
+  display:flex;flex-direction:column;gap:10px;box-shadow:0 18px 40px -22px rgba(18,38,58,.45)}
+.chat-top{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line);font-weight:700}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--tg);color:#fff;display:grid;place-items:center;font-size:1.1rem}
+.msg{max-width:84%;padding:9px 14px;border-radius:16px;font-size:.95rem;word-break:break-word}
+.msg.me{align-self:flex-end;background:var(--bubble-me);border-bottom-right-radius:4px}
+.msg.bot{align-self:flex-start;background:var(--bubble-bot);border-bottom-left-radius:4px}
+.msg code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:var(--bubble-bot);border-radius:16px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:blink 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.msg[hidden]{display:none}
+
+/* Sections */
+section{padding:36px 0}
+h2{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 22px}
+.cmds{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:0;margin:0;list-style:none}
+.cmds li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.cmds code{display:inline-block;font-weight:700;color:var(--tg);font-family:ui-monospace,Menlo,Consolas,monospace;margin-bottom:4px}
+.cmds p{margin:0;color:var(--muted);font-size:.95rem}
+
+.repos{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.repo{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:18px;text-decoration:none}
+.repo:hover{border-color:var(--tg)}
+.repo h3{margin:0;font-size:1.05rem}
+.repo p{margin:0;color:var(--muted);font-size:.93rem;flex:1}
+.meta{display:flex;gap:14px;font-size:.85rem;color:var(--muted)}
+.empty{color:var(--muted)}
+
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.links a{padding:9px 18px;border:1px solid var(--line);background:var(--surface);border-radius:999px;text-decoration:none;font-weight:500}
+.links a:hover{border-color:var(--tg)}
+
+footer{padding:36px 0 56px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);margin-top:20px}
+
+@media (max-width:760px){
+  .hero-grid{grid-template-columns:1fr}
+  header.hero{padding-top:36px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .typing i{animation:none;opacity:.6}
+  .btn:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 id="title">Xin chào, mình là Tên Của Bạn</h1>
+      <p class="lead" id="tagline">Mình xây dựng công cụ tự động hóa và chia sẻ mã nguồn mở. Thử bot Telegram hoặc xem các dự án bên dưới.</p>
+      <div class="btns">
+        <a class="btn primary" id="botBtn" href="#" target="_blank" rel="noopener">Mở bot trên Telegram</a>
+        <a class="btn" href="#repos">Xem dự án</a>
+      </div>
+    </div>
+
+    <div class="chat" aria-label="Ví dụ trò chuyện với bot">
+      <div class="chat-top"><span class="avatar" aria-hidden="true">🤖</span><span id="botNameTop">Tên Bot</span></div>
+      <div class="msg me" data-step><code>/start</code></div>
+      <div class="msg bot" data-step>Chào bạn! Mình có thể giúp gì hôm nay?</div>
+      <div class="msg me" data-step><code>/help</code></div>
+      <div class="msg bot" data-step>Gõ một lệnh trong danh sách bên dưới để bắt đầu.</div>
+      <div class="typing" id="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="bot">
+    <h2>Bot Telegram</h2>
+    <p class="sub" id="botDesc">Mô tả ngắn: bot làm gì, dành cho ai, dùng thế nào.</p>
+    <ul class="cmds" id="cmds"></ul>
+  </section>
+
+  <section id="repos">
+    <h2>Dự án trên GitHub</h2>
+    <p class="sub" id="repoSub">Các repo nổi bật.</p>
+    <div class="repos" id="repoList"></div>
+  </section>
+
+  <section>
+    <h2>Liên kết khác</h2>
+    <div class="links" id="links"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" id="foot"></div>
+</footer>
+
+<script>
+/* ===== CHỈNH SỬA PHẦN NÀY ===== */
+const CONFIG = {
+  name: "Tên Của Bạn",
+  tagline: "Mình xây dựng công cụ tự động hóa và chia sẻ mã nguồn mở. Thử bot Telegram hoặc xem các dự án bên dưới.",
+  githubUser: "username",          // tên tài khoản GitHub; để "" nếu chỉ muốn danh sách thủ công
+  autoLoadRepos: true,             // true: tự lấy repo mới nhất từ GitHub
+  maxRepos: 6,
+
+  bot: {
+    name: "Tên Bot",
+    username: "ten_bot_cua_ban",   // không có dấu @
+    description: "Bot giúp bạn ... (viết 1-2 câu). Miễn phí, bấm Start là dùng được.",
+    commands: [
+      { cmd: "/start", desc: "Bắt đầu và xem hướng dẫn nhanh." },
+      { cmd: "/help",  desc: "Danh sách lệnh và cách dùng." },
+      { cmd: "/status", desc: "Kiểm tra trạng thái hoạt động." }
+    ]
+  },
+
+  /* Dùng khi autoLoadRepos = false hoặc không gọi được API */
+  repos: [
+    { name: "ten-repo-1", desc: "Mô tả ngắn về dự án.", url: "https://github.com/username/ten-repo-1", lang: "Python", stars: 0 },
+    { name: "ten-repo-2", desc: "Mô tả ngắn về dự án.", url: "https://github.com/username/ten-repo-2", lang: "TypeScript", stars: 0 }
+  ],
+
+  links: [
+    { label: "GitHub",  url: "https://github.com/username" },
+    { label: "Kênh Telegram", url: "https://t.me/ten_kenh" },
+    { label: "Email",   url: "mailto:ban@example.com" }
+  ]
+};
+/* ===== HẾT PHẦN CHỈNH SỬA ===== */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+document.title = CONFIG.name + " | Bot & dự án";
+$("title").textContent = "Xin chào, mình là " + CONFIG.name;
+$("tagline").textContent = CONFIG.tagline;
+$("botNameTop").textContent = CONFIG.bot.name;
+$("botDesc").textContent = CONFIG.bot.description;
+$("botBtn").href = "https://t.me/" + CONFIG.bot.username;
+
+$("cmds").innerHTML = CONFIG.bot.commands.map(c =>
+  `<li><code>${esc(c.cmd)}</code><p>${esc(c.desc)}</p></li>`).join("");
+
+$("links").innerHTML = CONFIG.links.map(l =>
+  `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("");
+
+$("foot").textContent = "© " + new Date().getFullYear() + " " + CONFIG.name;
+
+function renderRepos(list){
+  const box = $("repoList");
+  if(!list.length){ box.innerHTML = '<p class="empty">Chưa có repo để hiển thị.</p>'; return; }
+  box.innerHTML = list.map(r => `
+    <a class="repo" href="${esc(r.url)}" target="_blank" rel="noopener">
+      <h3>${esc(r.name)}</h3>
+      <p>${esc(r.desc || "Chưa có mô tả.")}</p>
+      <div class="meta">${r.lang ? `<span>${esc(r.lang)}</span>` : ""}<span>★ ${esc(r.stars ?? 0)}</span></div>
+    </a>`).join("");
+}
+
+async function loadRepos(){
+  if(CONFIG.autoLoadRepos && CONFIG.githubUser){
+    try{
+      const res = await fetch(`https://api.github.com/users/${encodeURIComponent(CONFIG.githubUser)}/repos?sort=updated&per_page=30`);
+      if(!res.ok) throw new Error(res.status);
+      const data = (await res.json())
+        .filter(r => !r.fork && !r.archived && r.name.toLowerCase() !== (CONFIG.githubUser + ".github.io").toLowerCase())
+        .slice(0, CONFIG.maxRepos)
+        .map(r => ({ name:r.name, desc:r.description, url:r.html_url, lang:r.language, stars:r.stargazers_count }));
+      if(data.length){ renderRepos(data); return; }
+    }catch(e){ /* dùng danh sách thủ công */ }
+  }
+  renderRepos(CONFIG.repos);
+}
+loadRepos();
+
+/* Cuộc trò chuyện mẫu: chạy một lần khi tải trang */
+(function(){
+  const steps = [...document.querySelectorAll("[data-step]")];
+  const typing = $("typing");
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){ typing.hidden = true; return; }
+  steps.forEach(s => s.hidden = true);
+  let i = 0;
+  (function next(){
+    if(i >= steps.length){ typing.hidden = true; return; }
+    const s = steps[i++];
+    const isBot = s.classList.contains("bot");
+    setTimeout(() => { s.hidden = false; next(); }, isBot ? 900 : 500);
+  })();
+})();
+</script>
+</body>
+</html>
